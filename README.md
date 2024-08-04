@@ -39,6 +39,8 @@ The `train.py` script will:
 - Train the model using the training data.
 - Save the trained model to the models directory or upload it to the gcs.
 
+To train the model, it is important to note that it requires a GPU with a memory capacity of at least 35 GB. Therefore, it is recommended to use a GPU like the NVIDIA A100 for optimal performance.
+
 ### Example
 ```shell
 python train.py

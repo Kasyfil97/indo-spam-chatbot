@@ -1,4 +1,4 @@
-# multiclass-llama-3-8b
+# finetune llama-3-8b for multiclass prediction task
 
 This repository contains code for fine-tuning the Llama 3 8B model for multiclass classification using a conventional method.
 

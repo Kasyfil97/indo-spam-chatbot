@@ -1,0 +1,39 @@
+dataset_config:
+    train_data_path: 
+    sheet_name: 
+    val_size: 
+    test_size: 
+    class_dict:
+training_config:
+    output_dir: 
+    learning_rate: 
+    per_device_train_batch_size: 
+    per_device_eval_batch_size: 
+    num_train_epochs: 
+    weight_decay: 
+    logging_strategy: 
+    logging_steps: 
+    eval_strategy: 
+    eval_steps: 
+    save_strategy: 
+    save_steps: 
+    load_best_model_at_end: 
+    optim: 
+    report_to: 
+    save_limit: 
+blob_name:
+    model_blob_name: 
+    ckpnt_blob_name: 
+model:
+    base_model: 
+    new_model: 
+    max_len: 
+    num_labels:
+    num_last_block_to_unfreeze:
+    score_layer_to_unfreeze:
+wandb_config:
+    project: 
+    job_type: 
+    anounymous: 
+    run_name: 
+    notes: 

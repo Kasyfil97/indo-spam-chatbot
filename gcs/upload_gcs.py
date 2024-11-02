@@ -1,7 +1,7 @@
 from google.cloud import storage
 import os
 
-def upload_directory_to_gcs(source_directory_path, destination_blob_prefix, bucket_name = 'llm-buckets'):
+def upload_directory_to_gcs(source_directory_path, destination_blob_prefix, bucket_name):
     """Uploads a directory to a GCS bucket.
 
     Args:

@@ -29,9 +29,9 @@ Ensure that you are using Python 3.10 or higher for compatibility with the packa
 
 If you wish to retrain the model, you can use the train.py script. Configure the training parameters by editing the config.yaml file. The configurable options include:
 
-    Training and testing data paths
-    Model architecture and hyperparameters
-    Training settings (e.g., learning rate, epochs)
+- Training and testing data paths
+- Model architecture and hyperparameters
+- Training settings (e.g., learning rate, epochs)
 
 To start training, run:
 ```

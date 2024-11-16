@@ -1,0 +1,12 @@
+# python 3.10.xx
+pyyaml==6.0.1
+aiohttp==3.9.5
+transformers==4.43.3
+torch==2.3.1
+pytz
+accelerate
+sentencepiece==0.2.0
+pandas==2.0.3
+datasets
+scikit-learn==1.5.0
+google-cloud-storage==2.14.0

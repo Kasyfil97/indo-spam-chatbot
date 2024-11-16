@@ -2,16 +2,19 @@ import os
 import wandb
 from dotenv import load_dotenv
 from transformers import DataCollatorWithPadding
+import torch
 
 
 from config.config import Config
 from device_manager import DeviceManager
-from data import DatasetLoader
+from data.data import DatasetLoader
 from model.tokenizer import TokenizerLoader, DatasetTokenizer
 from model.model import Model
-from trainer import ModelTrainer
+from trainer.trainer import ModelTrainer
 from gcs.model_saver_uploader import ModelSaverUploader
 from model import *
+
+torch.cuda.set_device(0)
 
 if __name__ == '__main__':
     config = Config()
@@ -28,11 +31,11 @@ if __name__ == '__main__':
     )
 
     # Create device map
-    device_map = DeviceManager.create_device_map()
+    device_map = DeviceManager.create_device_map(config['model']['gpu_map'])
 
     # Load and preprocess dataset
     data_handler = DatasetLoader(config['dataset_config'])
-    data = data_handler.load_dataset()
+    data = data_handler.load_dataset(text_col = 'Message', target_col = 'Label')
     dataset = data_handler.create_dataset(data)
 
     # Load tokenizer
@@ -45,7 +48,10 @@ if __name__ == '__main__':
 
     # Load model
     model = Model(config['model'], tokenizer, device_map=device_map)
-    model_llama = model.load_model(score_layer_to_unfreeze=config['model']['score_layer_to_unfreeze'], num_last_block_to_unfreeze=config['model']['num_last_block_to_unfreeze'])
+    model_llama = model.load_model(
+        score_layer_to_unfreeze=config['model']['score_layer_to_unfreeze'], 
+        num_last_block_to_unfreeze=config['model']['num_last_block_to_unfreeze']
+    )
     collate_fn = DataCollatorWithPadding(tokenizer=tokenizer)
 
     # Configure and create trainer
@@ -54,7 +60,11 @@ if __name__ == '__main__':
     print('Begin training')
     try:
         print('train model: ', config['model']['base_model'])
-        trainer = model_trainer.train(tokenized_datasets, model_llama, tokenizer, collate_fn)
+        trainer = model_trainer.train(
+            tokenized_datasets, 
+            model_llama, 
+            tokenizer, 
+            collate_fn)
     except KeyboardInterrupt:
         print("\nProgram terminated by user")
 

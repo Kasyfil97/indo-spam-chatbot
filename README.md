@@ -1,73 +1,62 @@
-# finetune llama-3-8b for multiclass prediction task
+# Indo Spam Chatbot
 
-This repository contains code for fine-tuning the Llama 3 8B model for multiclass classification using a conventional method.
+## Introduction
 
-## Project Overview
-In this project, we fine-tune the Llama 3 8B model to perform multiclass classification tasks. Fine-tuning a large language model (LLM) like Llama 3 8B involves adjusting the model's weights based on the specific task at hand. For classification tasks, this usually entails modifying the model's output layer and training it with labeled data to predict the correct class.
+Indo Spam Chatbot is a fine-tuned spam detection model based on the **Gemma 2 2B** architecture. This model is specifically designed to identify spam messages in WhatsApp chatbot interactions. It has been fine-tuned using a dataset of 40,000 spam messages collected over a year. The dataset consists of two labels: **spam** and **non-spam**.
 
-Fine-tuning an LLM for classification can be done by:
+The model supports detecting spam across multiple categories, including:
+- Offensive and abusive words
+- Profane language
+- Gibberish words and numbers
+- Spam links
+- And more
 
-- Modifying the output layer to match the number of classes in the target dataset.
-- Training the model on the target dataset, where only a few layers (typically the final layer and a few preceding layers) are updated to avoid overfitting and to leverage the pre-trained knowledge of the model.
+This repository provides tools for fine-tuning, inference, and evaluating the model, along with configuration options for customization.
 
-This project follows the conventional approach to fine-tuning, ensuring that the model retains its pre-trained knowledge while adapting to the new classification task.
+---
 
-## Requirements
+## Installation
 
-Before you begin, ensure you have met the following requirements:
+To install the required dependencies, run the following command:
 
-- Python 3.x
-- Required libraries listed in requirements.txt
-
-You can install the required libraries using:
-
-```shell
+```bash
 pip install -r requirements.txt
 ```
 
-## Training
+Ensure that you are using Python 3.10 or higher for compatibility with the packages.
 
-To train the model, you can use the train.py script. This script does not take any arguments. Below is an example of how to run the training script:
+## Training the Model
 
-```shell
+If you wish to retrain the model, you can use the train.py script. Configure the training parameters by editing the config.yaml file. The configurable options include:
+
+    Training and testing data paths
+    Model architecture and hyperparameters
+    Training settings (e.g., learning rate, epochs)
+
+To start training, run:
+```
 python train.py
 ```
+## Running Inference
 
-The `train.py` script will:
-- Load the training data from the specified directory.
-- Configure the Llama 3 8B model for multiclass classification.
-- Train the model using the training data.
-- Save the trained model to the models directory or upload it to the gcs.
+For spam detection on new messages, use the inference.py script. This script takes input messages, processes them through the model, and outputs whether each message is spam or non-spam.
 
-To train the model, it is important to note that it requires a GPU with a memory capacity of at least 35 GB. Therefore, it is recommended to use a GPU like the NVIDIA A100 for optimal performance.
-
-### Example
-```shell
-python train.py
+To run inference, execute:
 ```
-
-This will start the training process using the predefined configurations in the `train.py` script.
-
-## Inference
-
-To perform inference using the trained model, you can use the inference.py script. This script does not take any arguments. Below is an example of how to run the inference script:
-
-```shell
 python inference.py
 ```
+Ensure that the model weights are properly downloaded and configured before running inference.
 
-The inference.py script will:
-- Load the trained model from the models directory.
-- Perform inference and output the predictions.
+## Model Weights
 
-### Example
-```shell
-python inference.py
-```
+The trained model weights are available for download on Hugging Face
 
-This will load the trained model and perform inference on the provided input data.
+## Example Use Cases
 
-## Contributing
+This model can be used in various chatbot systems to:
 
-If you would like to contribute to this project, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
+    Filter out spam messages in real time
+    Improve user experience by blocking inappropriate content
+    Identify and flag suspicious links or messages
 
+Feel free to explore the example scripts and adapt them to your needs.

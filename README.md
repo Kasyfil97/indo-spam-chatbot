@@ -49,7 +49,7 @@ Ensure that the model weights are properly downloaded and configured before runn
 
 ## Model Weights
 
-The trained model weights are available for download on Hugging Face
+The trained model weights are available for download on Hugging Face: https://huggingface.co/kasyfilalbar/indo-spam-chatbot
 
 ## Example Use Cases
 

@@ -55,8 +55,8 @@ The trained model weights are available for download on Hugging Face: https://hu
 
 This model can be used in various chatbot systems to:
 
-    Filter out spam messages in real time
-    Improve user experience by blocking inappropriate content
-    Identify and flag suspicious links or messages
+- Filter out spam messages in real time
+- Improve user experience by blocking inappropriate content
+- Identify and flag suspicious links or messages
 
 Feel free to explore the example scripts and adapt them to your needs.
